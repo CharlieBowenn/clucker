@@ -15,3 +15,8 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50, blank=False)
     email = models.EmailField(unique=True, blank=False)
     bio = models.CharField(max_length=520, blank=True)
+
+class Post():
+    author = User
+    text = models.CharField(max_length=280)
+    created_at = models.DateTimeField()
