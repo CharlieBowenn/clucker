@@ -3,8 +3,9 @@ from django.test import TestCase
 from django.urls import reverse
 from microblogs.forms import LogInForm
 from microblogs.models import User
+from .helpers import LogInTester
 
-class LogInViewTestCase(TestCase):
+class LogInViewTestCase(TestCase, LogInTester):
     """Tests of the log in view"""
 
     def setUp(self):
@@ -46,7 +47,3 @@ class LogInViewTestCase(TestCase):
         response_url = reverse('feed')
         self.assertRedirects(response, response_url, status_code=302, target_status_code=200)
         self.assertTemplateUsed(response, 'feed.html')
-
-    # _auth_user_id only created if there is a user logged in
-    def _is_logged_in(self):
-        return '_auth_user_id' in self.client.session.keys()
