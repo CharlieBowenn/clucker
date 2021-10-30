@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .forms import SignUpForm, LogInForm
 from .models import User
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 # request is simply session ID
 def home(request):
@@ -32,5 +33,7 @@ def log_in(request):
                 # pass session id and user into django login method
                 login(request, user)
                 return redirect('feed')
+        # Error messages go here
+        messages.add_message(request, messages.ERROR, "Username/Password are invalid ya dam fool")
     form = LogInForm()
     return render(request, 'log_in.html', {'form': form})
