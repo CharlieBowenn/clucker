@@ -4,6 +4,9 @@
 </head>
   <body>
     <h1>Feed</h1>
-    <p><b>DA FEED IS UNDAH CONSTWUCTION</b>: This page will contain a users feed of clucks.</p>
+    <form action="{% url 'feed' %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Post">
   </body>
 </html>

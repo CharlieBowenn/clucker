@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .forms import SignUpForm, LogInForm
+from .forms import SignUpForm, LogInForm, PostForm
 from .models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -20,7 +20,8 @@ def sign_up(request):
     return render(request, 'sign_up.html', {'form': form})
 
 def feed(request):
-    return render(request, 'feed.html')
+    form = PostForm()
+    return render(request, 'feed.html', {'form': form})
 
 def log_in(request):
     if request.method == 'POST':
