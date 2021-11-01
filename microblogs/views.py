@@ -42,3 +42,11 @@ def log_in(request):
 def log_out(request):
     logout(request)
     return redirect('home')
+
+def user_list(request):
+    users = User.objects.all()
+    userInfo = []
+    for user in users:
+        userInfo.append(""+user.username+" "+user.first_name+" "+user.last_name)
+    context = {'userInfo': userInfo}
+    return render(request, 'user_list.html', context)
