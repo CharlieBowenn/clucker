@@ -50,3 +50,14 @@ def user_list(request):
         userInfo.append(""+user.username+" "+user.first_name+" "+user.last_name)
     context = {'userInfo': userInfo}
     return render(request, 'user_list.html', context)
+
+def show_user(request, user_id):
+    chosen = User.objects.get(id=user_id)
+    info = []
+    info.append('User ID: '+str(chosen.id))
+    info.append('Username: '+chosen.username)
+    info.append('First name: '+chosen.first_name)
+    info.append('Last name: '+chosen.last_name)
+    info.append('Email: '+chosen.email)
+    context = {'info': info}
+    return render(request, 'show_user.html', context)
