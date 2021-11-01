@@ -1,0 +1,12 @@
+<html>
+<head>
+  <title>CluckCluck</title>
+</head>
+  <body>
+    <h1>Feed</h1>
+    <form action="{% url 'feed' %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Post">
+  </body>
+</html>
