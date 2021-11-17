@@ -3,6 +3,7 @@ from .forms import SignUpForm, LogInForm, PostForm
 from .models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 
 # request is simply session ID
 def home(request):
@@ -61,3 +62,7 @@ def show_user(request, user_id):
     info.append('Email: '+chosen.email)
     context = {'info': info}
     return render(request, 'show_user.html', context)
+
+# def new_post(request):
+#     if request.user.is_authenticated:
+        

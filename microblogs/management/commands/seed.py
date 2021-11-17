@@ -4,11 +4,9 @@ from faker import Faker
 
 class Command(BaseCommand):
     def __init__(self):
-        #super().__init__()
         self.faker = Faker('en_GB')
 
     def handle(self, *args, **options):
-        #fake = Faker()
         for x in range(0, 99):
             firstName = self.faker.first_name()
             lastName = self.faker.last_name()
@@ -23,6 +21,3 @@ class Command(BaseCommand):
             bio = bio
             )
             addUser.save()
-
-        # for x in range(0, len(list)):
-        #     print(list[x].username)
