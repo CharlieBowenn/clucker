@@ -1,9 +1,10 @@
 from django.shortcuts import redirect, render
 from .forms import SignUpForm, LogInForm, PostForm
-from .models import User
+from .models import User, Post
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseForbidden
 
 # request is simply session ID
 def home(request):
@@ -45,24 +46,49 @@ def log_out(request):
     logout(request)
     return redirect('home')
 
+# def user_list(request):
+#     users = User.objects.all()
+#     userInfo = []
+#     for user in users:
+#         userInfo.append(""+user.username+" "+user.first_name+" "+user.last_name)
+#     context = {'userInfo': userInfo}
+#     return render(request, 'user_list.html', context)
+
 def user_list(request):
     users = User.objects.all()
-    userInfo = []
-    for user in users:
-        userInfo.append(""+user.username+" "+user.first_name+" "+user.last_name)
-    context = {'userInfo': userInfo}
-    return render(request, 'user_list.html', context)
+    return render(request, 'user_list.html', {'users': users})
+
+# def show_user(request, user_id):
+#     chosen = User.objects.get(id=user_id)
+#     info = []
+#     info.append('User ID: '+str(chosen.id))
+#     info.append('Username: '+chosen.username)
+#     info.append('First name: '+chosen.first_name)
+#     info.append('Last name: '+chosen.last_name)
+#     info.append('Email: '+chosen.email)
+#     context = {'info': info}
+#     return render(request, 'show_user.html', context)
 
 def show_user(request, user_id):
-    chosen = User.objects.get(id=user_id)
-    info = []
-    info.append('User ID: '+str(chosen.id))
-    info.append('Username: '+chosen.username)
-    info.append('First name: '+chosen.first_name)
-    info.append('Last name: '+chosen.last_name)
-    info.append('Email: '+chosen.email)
-    context = {'info': info}
-    return render(request, 'show_user.html', context)
+    try:
+        user = User.objects.get(id=user_id)
+    except ObjectDoesNotExist:
+        return redirect('user_list')
+    else:
+        return render(request, 'show_user.html', {'user': user})
 
-# def new_post(request):
-#     if request.user.is_authenticated:
+def new_post(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            current_user = request.user
+            form = PostForm(request.POST)
+            if form.is_valid():
+                text = form.cleaned_data.get('text')
+                post = Post.objects.create(author=current_user, text=text)
+                return redirect('feed')
+            else:
+                return render(request, 'feed.html', {'form': form})
+        else:
+            return redirect('log_in')
+    else:
+        return HttpResponseForbidden()

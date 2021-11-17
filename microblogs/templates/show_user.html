@@ -1,11 +1,10 @@
-<html>
-<head>
-  <title>User Details</title>
-</head>
-<body>
-  <h1>User Details</h1>
-  {% for line in info %}
-    <p>{{ line }}</p>
-  {% endfor %}
-</body>
-</html>
+{% extends 'base_content.html' %}
+{% block content %}
+<div class="container">
+  <div class="row content">
+    <div class="col-xs-12 col-lg-6 col-xl-4">
+      {% include 'partials/user_profile.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}
