@@ -37,6 +37,7 @@ def log_in(request):
                 return redirect('feed')
         # Error messages go here
         messages.add_message(request, messages.ERROR, "Username/Password are invalid ya dam fool")
+
     form = LogInForm()
     return render(request, 'log_in.html', {'form': form})
 
@@ -65,4 +66,3 @@ def show_user(request, user_id):
 
 # def new_post(request):
 #     if request.user.is_authenticated:
-        
