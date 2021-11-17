@@ -1,12 +1,9 @@
-<html>
-<head>
-  <title>CluckCluck</title>
-</head>
-  <body>
-    <h1>Sign up</h1>
-    <form action="{% url 'sign_up' %}" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Sign Up">
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block body %}
+<h1>Sign up</h1>
+<form action="{% url 'sign_up' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Sign Up">
+</form>
+{% endblock %}
