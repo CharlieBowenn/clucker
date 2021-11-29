@@ -73,6 +73,7 @@ def user_list(request):
 #     context = {'info': info}
 #     return render(request, 'show_user.html', context)
 
+@login_required
 def show_user(request, user_id):
     try:
         user = User.objects.get(id=user_id)
