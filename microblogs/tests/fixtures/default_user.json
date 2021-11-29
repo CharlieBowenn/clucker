@@ -8,7 +8,7 @@
       "username": "@ChazzaB",
       "email": "ChazBosh@outlook.com",
       "bio": "Ayo this da user Chazza Boz yeeee",
-      "password": "",
+      "password": "pbkdf2_sha256$260000$CubffHYFYxrpqv8h7ZAuEF$XCO8FjYd6omt1jC31z7sB+17pVaCM3mseK0FE2Sz4+k=",
       "is_active": true
     }
   }
