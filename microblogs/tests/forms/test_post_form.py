@@ -4,7 +4,7 @@ from microblogs.forms import PostForm
 
 class PostFormTestCase(TestCase):
     def setUp(self):
-        super(TestCase, self).sestUp()
+        super(TestCase, self).setUp()
         self.user = User.objects.create_user(
             '@ChazzaB',
             first_name='Chaz',

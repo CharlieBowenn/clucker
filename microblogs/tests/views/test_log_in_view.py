@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 from microblogs.forms import LogInForm
 from microblogs.models import User
-from .helpers import LogInTester
+from microblogs.tests.helpers import LogInTester
 from django.contrib import messages
 
 class LogInViewTestCase(TestCase, LogInTester):
