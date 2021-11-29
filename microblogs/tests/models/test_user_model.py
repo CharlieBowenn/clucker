@@ -5,15 +5,15 @@ from microblogs.models import User
 
 class UserModelTestCase(TestCase):
     """Unit tests of the User model"""
-    
+
     def setUp(self):
         self.user = User.objects.create_user(
-        '@johndoe',
-        first_name='John',
-        last_name='Doe',
-        email='johndoe@example.org',
-        password='Password123',
-        bio='The quick brown fox jumps over the lazy dog.'
+            '@ChazzaB',
+            first_name='Chaz',
+            last_name='Boz',
+            email='ChazBosh@outlook.com',
+            password='Password123',
+            bio='Ayo this da user Chazza Boz yeeee'
         )
 
     def test_valid_user(self):
@@ -37,23 +37,23 @@ class UserModelTestCase(TestCase):
         self._assert_user_is_invalid()
 
     def test_username_must_start_with_at_symbol(self):
-        self.user.username = 'johndoe'
+        self.user.username = 'ChazzaB'
         self._assert_user_is_invalid()
 
     def test_username_must_contain_only_alphanumericals_after_at(self):
-        self.user.username = '@john!doe'
+        self.user.username = '@Chazza!B'
         self._assert_user_is_invalid()
 
     def test_username_must_contain_at_least_3_alphanumericals_after_at(self):
-        self.user.username = '@jo'
+        self.user.username = '@ch'
         self._assert_user_is_invalid()
 
     def test_username_may_contain_numbers(self):
-        self.user.username = '@j0hndoe2'
+        self.user.username = '@Cha55aB'
         self._assert_user_is_valid()
 
     def test_username_must_contain_only_one_at(self):
-        self.user.username = '@@johndoe'
+        self.user.username = '@@ChazzaB'
         self._assert_user_is_invalid()
 
 
@@ -103,23 +103,23 @@ class UserModelTestCase(TestCase):
         self._assert_user_is_invalid()
 
     def test_email_must_contain_username(self):
-        self.user.email = '@example.org'
+        self.user.email = '@outlook.com'
         self._assert_user_is_invalid()
 
     def test_email_must_contain_at_symbol(self):
-        self.user.email = 'johndoe.example.org'
+        self.user.email = 'ChazzaBosh.outlook.com'
         self._assert_user_is_invalid()
 
     def test_email_must_contain_domain_name(self):
-        self.user.email = 'johndoe@.org'
+        self.user.email = 'ChazzaBosh@.com'
         self._assert_user_is_invalid()
 
     def test_email_must_contain_domain(self):
-        self.user.email = 'johndoe@example'
+        self.user.email = 'ChazzaBosh@outlook'
         self._assert_user_is_invalid()
 
     def test_email_must_not_contain_more_than_one_at(self):
-        self.user.email = 'johndoe@@example.org'
+        self.user.email = 'ChazzaBosh@@outlook.com'
         self._assert_user_is_invalid()
 
 

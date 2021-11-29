@@ -7,7 +7,7 @@ class LogInFormTestCase(TestCase):
     """Unit tests of the log in form"""
 
     def setUp(self):
-        self.form_input = {'username': '@janedoe', 'password': 'Password123'}
+        self.form_input = {'username': '@ChazzaB', 'password': 'Password123'}
 
     def test_form_contains_required_fields(self):
         form = LogInForm()
