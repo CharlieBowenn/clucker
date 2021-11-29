@@ -22,6 +22,7 @@ def sign_up(request):
         form = SignUpForm()
     return render(request, 'sign_up.html', {'form': form})
 
+@login_required
 def feed(request):
     form = PostForm()
     return render(request, 'feed.html', {'form': form})
