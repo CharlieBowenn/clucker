@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .forms import SignUpForm, LogInForm, PostForm
 from .models import User, Post
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseForbidden
@@ -35,12 +36,14 @@ def log_in(request):
             if user is not None:
                 # pass session id and user into django login method
                 login(request, user)
-                return redirect('feed')
+                redirect_url = request.POST.get('next') or 'feed'
+                return redirect(redirect_url)
         # Error messages go here
         messages.add_message(request, messages.ERROR, "Username/Password are invalid ya dam fool")
 
     form = LogInForm()
-    return render(request, 'log_in.html', {'form': form})
+    next = request.GET.get('next') or ''
+    return render(request, 'log_in.html', {'form': form, 'next': next})
 
 def log_out(request):
     logout(request)
@@ -54,6 +57,7 @@ def log_out(request):
 #     context = {'userInfo': userInfo}
 #     return render(request, 'user_list.html', context)
 
+@login_required
 def user_list(request):
     users = User.objects.all()
     return render(request, 'user_list.html', {'users': users})
