@@ -52,7 +52,7 @@ class LogInViewTestCase(TestCase, LogInTester):
         messages_list = list(response.context['messages'])
         self.assertEqual(len(messages_list), 0)
 
-    def test_get_log_in_redirect_when_logged_in(self):
+    def test_get_log_in_redirects_when_logged_in(self):
         self.client.login(username=self.user.username, password='Password123')
         response = self.client.get(self.url, follow=True)
         redirect_url = reverse('feed')
