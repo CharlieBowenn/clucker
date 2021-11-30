@@ -11,5 +11,31 @@
       "password": "pbkdf2_sha256$260000$CubffHYFYxrpqv8h7ZAuEF$XCO8FjYd6omt1jC31z7sB+17pVaCM3mseK0FE2Sz4+k=",
       "is_active": true
     }
+  },
+  {
+    "model": "microblogs.user",
+    "pk": 3,
+    "fields": {
+      "first_name": "Petra",
+      "last_name": "Pickles",
+      "username": "@petrapickles",
+      "email": "petrapickles@example.org",
+      "bio": "The quick brown fox jumps over the lazy dog.",
+      "password": "pbkdf2_sha256$260000$CubffHYFYxrpqv8h7ZAuEF$XCO8FjYd6omt1jC31z7sB+17pVaCM3mseK0FE2Sz4+k=",
+      "is_active": true
+    }
+  },
+  {
+    "model": "microblogs.user",
+    "pk": 4,
+    "fields": {
+      "first_name": "Peter",
+      "last_name": "Pickles",
+      "username": "@peterpickles",
+      "email": "peterpickles@example.org",
+      "bio": "The quick brown fox jumps over the lazy dog.",
+      "password": "pbkdf2_sha256$260000$CubffHYFYxrpqv8h7ZAuEF$XCO8FjYd6omt1jC31z7sB+17pVaCM3mseK0FE2Sz4+k=",
+      "is_active": true
+    }
   }
 ]
