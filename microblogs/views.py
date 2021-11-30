@@ -77,10 +77,11 @@ def show_user(request, user_id):
     try:
         user = User.objects.get(id=user_id)
         posts = Post.objects.filter(author=user)
+        following = request.user.is_following(user)
     except ObjectDoesNotExist:
         return redirect('user_list')
     else:
-        return render(request, 'show_user.html', {'user': user, 'posts': posts})
+        return render(request, 'show_user.html', {'user': user, 'posts': posts, 'following': following})
 
 def new_post(request):
     if request.method == 'POST':
