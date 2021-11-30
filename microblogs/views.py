@@ -32,6 +32,9 @@ def feed(request):
     posts = Post.objects.filter(author=current_user)
     return render(request, 'feed.html', {'form': form, 'posts': posts})
 
+def follow_toggle(request):
+    return redirect('feed')
+
 @login_prohibited
 def log_in(request):
     if request.method == 'POST':
