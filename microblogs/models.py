@@ -29,6 +29,22 @@ class User(AbstractUser):
     def mini_gravatar(self):
         return self.gravatar(size=60)
 
+    def toggle_follow(self, followee):
+        """Toggles whether self follows a given user"""
+        pass
+
+    def is_following(self, user):
+        """Returns whether self follows given user"""
+        return False
+
+    def follower_count(self):
+        """Number of users following self"""
+        return 0
+
+    def followee_count(self):
+        """Number of users self is following"""
+        return 0
+
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     text = models.CharField(max_length=280)
