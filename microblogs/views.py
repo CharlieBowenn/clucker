@@ -6,14 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseForbidden
-
-def login_prohibited(view_function):
-    def modified_view_function(request):
-        if request.user.is_authenticated:
-            return redirect('feed')
-        else:
-            return view_function(request)
-    return modified_view_function
+from .helpers import login_prohibited
 
 # request is simply session ID
 @login_prohibited
