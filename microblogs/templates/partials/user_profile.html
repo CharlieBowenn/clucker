@@ -11,5 +11,17 @@
 <div class="row content">
   <div class="col-12">
     <p class="profile-bio">{{ user.bio }}</p>
+    <p class="profile-statistics">
+      <span>
+        <b>{{ user.followee_count }}</b> Following
+        &emsp;
+        <b>{{ user.follower_count }}</b> Followers
+    </span>
+    <span class="float-end">
+      <button class="btn btn-primary">
+        Follow
+      </button>
+    </span>
+    </p>
   </div>
 </div>
