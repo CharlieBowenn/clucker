@@ -16,6 +16,7 @@ def login_prohibited(view_function):
     return modified_view_function
 
 # request is simply session ID
+@login_prohibited
 def home(request):
     return render(request, 'home.html')
 
