@@ -54,38 +54,20 @@ def log_out(request):
     logout(request)
     return redirect('home')
 
-# def user_list(request):
-#     users = User.objects.all()
-#     userInfo = []
-#     for user in users:
-#         userInfo.append(""+user.username+" "+user.first_name+" "+user.last_name)
-#     context = {'userInfo': userInfo}
-#     return render(request, 'user_list.html', context)
-
 @login_required
 def user_list(request):
     users = User.objects.all()
     return render(request, 'user_list.html', {'users': users})
 
-# def show_user(request, user_id):
-#     chosen = User.objects.get(id=user_id)
-#     info = []
-#     info.append('User ID: '+str(chosen.id))
-#     info.append('Username: '+chosen.username)
-#     info.append('First name: '+chosen.first_name)
-#     info.append('Last name: '+chosen.last_name)
-#     info.append('Email: '+chosen.email)
-#     context = {'info': info}
-#     return render(request, 'show_user.html', context)
-
 @login_required
 def show_user(request, user_id):
     try:
         user = User.objects.get(id=user_id)
+        posts = Post.objects.filter(author=user)
     except ObjectDoesNotExist:
         return redirect('user_list')
     else:
-        return render(request, 'show_user.html', {'user': user})
+        return render(request, 'show_user.html', {'user': user, 'posts': posts})
 
 def new_post(request):
     if request.method == 'POST':

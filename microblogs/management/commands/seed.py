@@ -18,6 +18,7 @@ class Command(BaseCommand):
             first_name = firstName,
             last_name = lastName,
             email = email,
-            bio = bio
+            bio = bio,
+            password='Password123'
             )
             addUser.save()
